@@ -4,44 +4,47 @@ import { useConverterStore } from "@/stores/converter";
 import { storeToRefs } from "pinia";
 
 const converterStore = useConverterStore();
-// destructuring store
-const { from, to, fromAmount, toAmount, data, fromCountryList, toCountryList } = storeToRefs(converterStore);</script>
+// destructuring store properties
+const { selectedOne, selectedTwo , fromAmount, toAmount, data, fromCountrySelected, toCountryselected } = storeToRefs(converterStore);
+
+</script>
 
 <template>
   <div class="current">
-    <span>{{ inputTwoStore }}</span>
+    <span>{{ toAmount }}</span>
     <small>Currency converter app</small>
   </div>
-   <!-- from country selector -->
+   <!-- from country selector option-->
    <div id="container">
         <div>
-            <select id="from" v-model="from">
+            <select  v-model="selectedOne">
                 <option value="" disabled selected>Select From Country</option>
-                <option v-for="country in fromCountryList" :key="country.id" :value="country" placeholder="Enter">
+                <option v-for="(country,index) in fromCountrySelected" :key="index" :value="country" placeholder="Enter">
                     {{ country.country }}
                 </option>
             </select>
-            <!-- from input -->
+            <!-- from input attribute  -->
             <input type="number" v-model="fromAmount" />
         </div>
     
-        <!-- to country selector -->
+        <!-- to country selector option -->
         <div>
-            <select id="to" v-model="to">
+            <select  v-model="selectedTwo ">
                 <option value="" disabled selected>Select To Country</option>
-                <option v-for="country in toCountryList" :key="country.id" :value="country">
+                <option v-for="(country,index) in toCountryselected" :key="index" :value="country">
                     {{ country.country }}
                 </option>
             </select>
-            <!-- to input -->
-            <input type="number" v-model="toAmount" :disabled="true" />
+            <!--  to input attribute for show the amount  -->
+            <input type="number" v-model="toAmount" />
         </div>
     </div>
 
     <div id="container">
-        <!-- button to calculate currency -->
-        <button @click="converterStore.currencyConverter">Convert</button>
-    </div></template>
+        <!-- button to convert the currency  -->
+        <button @click="converterStore.currencyConverter">Currency converter</button>
+    </div>
+    </template>
 
 <style scoped>
 .select {
@@ -61,8 +64,8 @@ const { from, to, fromAmount, toAmount, data, fromCountryList, toCountryList } =
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 200px;
+  width: 450px;
+  height: 300px;
   text-align: center;
   background-color: white;
   border-radius: 999px;
