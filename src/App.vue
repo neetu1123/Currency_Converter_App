@@ -54,7 +54,7 @@ const { selectedOne, selectedTwo , fromAmount, toAmount, data, fromCountrySelect
 .inputOne
  {
   display: inline-block;
-  margin: 10px;
+  margin: 15px;
 }
 #app {
   align-content: center;
